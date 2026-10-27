@@ -1,0 +1,55 @@
+<Window x:Class="AromaDomWpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Арома Дом — материалы" Width="1000" Height="720"
+        MinWidth="780" MinHeight="450" FontFamily="Georgia" FontSize="16"
+        Language="ru-RU" Background="White" WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded">
+    <Grid Margin="24" Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <DockPanel Margin="0,0,0,18">
+            <Button DockPanel.Dock="Right" Content="Обновить" Padding="20,10"
+                    Background="#8A5A44" Foreground="White" Click="Refresh_Click" />
+            <Button DockPanel.Dock="Right" Content="Добавить" Margin="0,0,10,0" Padding="20,10" Background="#8A5A44" Foreground="White" Click="Add_Click" />
+            <Button DockPanel.Dock="Right" Content="Расчёт" Margin="0,0,10,0" Padding="20,10" Background="#8A5A44" Foreground="White" Click="Calculate_Click" />
+            <StackPanel>
+                <TextBlock Text="Арома Дом" FontSize="28" Foreground="#8A5A44" />
+                <TextBlock Text="Материалы для производства" Margin="0,7,0,0" />
+            </StackPanel>
+        </DockPanel>
+        <TextBlock x:Name="StatusText" Grid.Row="1" Margin="0,0,0,12" TextWrapping="Wrap" />
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <ItemsControl x:Name="MaterialsList">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="#F4E6D4" BorderBrush="#8A5A44"
+                                MouseLeftButtonUp="Edit_Click" Cursor="Hand" BorderThickness="1" Padding="18" Margin="0,0,8,12">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="230" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Margin="0,0,18,0">
+                                    <TextBlock Text="{Binding Title}" FontSize="18" FontWeight="Bold" TextWrapping="Wrap" />
+                                    <TextBlock Text="{Binding MinimumText}" Margin="0,12,0,0" />
+                                    <TextBlock Text="{Binding StockText}" Margin="0,6,0,0" />
+                                    <TextBlock Text="{Binding PriceText}" Margin="0,6,0,0" TextWrapping="Wrap" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                    <Button Content="Продукция" Margin="0,0,0,10" Padding="10" Background="#8A5A44" Foreground="White" Click="Products_Click" />
+                                    <TextBlock Text="Требуемое количество:" TextWrapping="Wrap" />
+                                    <TextBlock Text="{Binding RequiredText}" FontSize="22"
+                                               Foreground="#8A5A44" Margin="0,8,0,0" />
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</Window>
